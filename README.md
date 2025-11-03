@@ -105,33 +105,49 @@ PART 3:
 SCREENSHOTS OF MY WEBSITE ON DIFFERENT DEVICES AND SCREEN SIZES - NEW SCREENSHOTS (NOT THE SAME AS PART 2)
 
 IPHONE 12 PRO:
+
+
 <img width="384" height="740" alt="Screenshot 2025-11-03 at 22 24 25" src="https://github.com/user-attachments/assets/4401a616-d13c-4de5-8121-3a064c99c95e" />
 
 
 
 SAMSUNG GALAXY S20 ULTRA:
+
+
 <img width="358" height="722" alt="Screenshot 2025-11-03 at 22 25 03" src="https://github.com/user-attachments/assets/5a865f59-a3f9-459a-9a08-ac0b48348548" />
 
 
 
 ASUS ZENBOOK FOLD:
+
+
 <img width="564" height="761" alt="Screenshot 2025-11-03 at 22 25 42" src="https://github.com/user-attachments/assets/aaa5f7ec-ab7b-49d3-bae6-08224d154ff2" />
 
 
 
 IPAD AIR:
+
+
 <img width="513" height="722" alt="Screenshot 2025-11-03 at 22 26 18" src="https://github.com/user-attachments/assets/ce2a06da-749d-40af-a87b-837e3a7f754d" />
 
 SURFACE DUO:
+
+
 <img width="587" height="745" alt="Screenshot 2025-11-03 at 22 27 00" src="https://github.com/user-attachments/assets/3b057867-f4b2-4dac-8c5b-102f7d434a06" />
 
 
 NEST HUB MAX:
+
+
 <img width="863" height="529" alt="Screenshot 2025-11-03 at 22 27 24" src="https://github.com/user-attachments/assets/d07739b8-24fa-439a-951d-1cad6df8d165" />
 
 
 PIXEL 7:
+
+
 <img width="354" height="733" alt="Screenshot 2025-11-03 at 22 28 03" src="https://github.com/user-attachments/assets/38185f68-555a-4f45-9573-f67915fc6463" />
+
+
 
 Reference list:
 
