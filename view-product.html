@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Product</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>ProSport Hub – Product Details</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="enquiry.html">Enquiry</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+        </ul>
+    </nav>
+    <div class="view-container" id="view-container">
+        <!-- Product details will be injected here -->
+    </div>
+    <div id="cart-popup" style="display:none;position:fixed;top:30px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#ff512f,#dd2476);color:white;padding:1.2em 2.5em;border-radius:12px;font-size:1.15em;font-weight:bold;z-index:9999;box-shadow:0 2px 12px rgba(221,36,118,0.13);transition:opacity 0.3s;opacity:0;"></div>
+    <footer>
+        <p>&copy; 2025 ProSport Hub – Sports Equipment & Apparel Store. All rights reserved.</p>
+    </footer>
+    <script>
+        const container = document.getElementById('view-container');
+        const product = JSON.parse(localStorage.getItem('selectedProduct'));
+        if (product) {
+            container.innerHTML = `
+                <img src="${product.img}" alt="${product.name}">
+                <h2>${product.name}</h2>
+                <p class="price">R${product.price}</p>
+                <p class="desc">${product.desc}</p>
+                <button onclick="addToCart()">Add to Cart</button>
+                <div><a class="back-link" href="product.html">&#8592; Back to Products</a></div>
+            `;
+        } else {
+            container.innerHTML = '<p>Product not found. <a href="product.html">Back to Products</a></p>';
+        }
+        function addToCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            showCartPopup(product.name + " has been added to your cart!");
+        }
+
+        function showCartPopup(message) {
+            const popup = document.getElementById('cart-popup');
+            popup.textContent = message;
+            popup.style.display = 'block';
+            popup.style.opacity = '1';
+            setTimeout(() => {
+                popup.style.opacity = '0';
+                setTimeout(() => { popup.style.display = 'none'; }, 400);
+            }, 1800);
+        }
+    </script>
+</body>
+</html>
