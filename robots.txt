@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /about.html
+Allow: /products.html
+Allow: /gallery.html
+Allow: /contact.html
+Allow: /map.html
+Disallow: /cart.html
+Disallow: /js/
+Disallow: /css/
+Disallow: /*.json$
+
+Sitemap: https://www.prosporthub.co.za/sitemap.xml
