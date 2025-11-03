@@ -1,0 +1,54 @@
+# Security Headers
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+Header set Permissions-Policy "geolocation=self"
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https://*.tile.openstreetmap.org; font-src 'self'; frame-src 'none'; connect-src 'self'"
+
+# Enable CORS for specific domains
+Header set Access-Control-Allow-Origin "https://www.prosporthub.co.za"
+
+# Enable compression for better performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Browser caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Protect against common exploits
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK|DEBUG) [NC]
+RewriteRule ^(.*)$ - [F,L]
+
+# Block access to sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Redirect HTTP to HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
