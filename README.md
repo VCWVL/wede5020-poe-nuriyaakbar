@@ -90,6 +90,7 @@ PART 3:
 - Added three textboxes on the cart page to explain the Security & Privacy, Returns & Refunds, and a contact support.
 - Added a new gallery,html page with a lightbox,with images of all products.
 - Added a map.html which has an interctive map to find our store.
+- Made slight changes to all html pages/files
 - Added sitemap.xml , .htaccess and a robots.txt files for security.
 - Added a dropdown on the enquiry page for what the user would like to enquire about,eg.a product,service,becoming a volunteer/sponsor etc.
 - Added an option to search for products and a 'Sort By" filter on the produtcs.html page.
