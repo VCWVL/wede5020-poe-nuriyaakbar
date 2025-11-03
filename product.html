@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy Sports Equipment & Gear | ProSport Hub</title>
+<meta name="description" content="Browse and buy sports equipment, fitness gear, and athletic products online at ProSport Hub. Free shipping on orders over R500!">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+        <h1>Buy Sports Equipment & Gear | ProSport Hub</h1>
+        <p style="text-align:center;font-size:1.5em;font-weight:bold;color:#ff512f;margin-top:0.5em;background:#fff;padding:0.5em;border-radius:5px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">🚚 FREE SHIPPING ON ORDERS OVER R500! 🚚</p>
+    </header>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="enquiry.html">Enquiry</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="product.html" class="active">Products</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="map.html">Location</a></li>
+        <li><a href="cart.html">Shopping Cart</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h2>Shop Our Products</h2>
+    <div style="text-align:center; margin-bottom:1em;">
+        <input type="text" id="searchInput" placeholder="Search products..." style="padding:8px 12px; font-size:1em; border:1px solid #333; border-radius:5px; width:220px; max-width:90%;">
+        <select id="sortSelect" style="padding:8px 12px; font-size:1em; border:1px solid #333; border-radius:5px;">
+            <option value="default">Sort By</option>
+            <option value="name">Name (A-Z)</option>
+            <option value="priceLow">Price (Low to High)</option>
+            <option value="priceHigh">Price (High to Low)</option>
+        </select>
+    </div>
+    <div class="products" id="product-list">
+        <!-- Products will be injected here by JavaScript -->
+    </div>
+    <p style="text-align:center; font-size:2em; margin-top:2em; color:red; font-weight:bold; letter-spacing:1px;">WE ARE NOT DONE JUST YET...MORE PRODUCTS COMING SOON!!!</p>
+        <div style="text-align:center; margin-top:1.5em;">
+            <p style="color:black; font-size:1.1em; margin-bottom:0.7em;">To stay updated and get exclusive offers on our new products, drop your email address below:</p>
+            <input type="email" placeholder="Enter your email" style="padding:10px 15px; font-size:1em; border:1px solid #333; border-radius:5px; width:250px; max-width:90%; margin-bottom:0.5em;">
+            <button style="padding:10px 20px; font-size:1em; background:#111; color:white; border:none; border-radius:5px; margin-left:10px; cursor:pointer;">Subscribe</button>
+        </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 ProSport Hub – Sports Equipment & Apparel Store. All rights reserved.</p>
+</footer>
+
+<script>
+    const products = [
+        {
+            name: "Nike Running Sneakers",
+            price: " 1500",
+            img: "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/d1a1880a-6f23-4c9e-b057-d6cd8a72c42b/NIKE+AIR+WINFLO+11.png",
+            desc: "Lightweight running sneakers designed for speed and comfort."
+        },
+
+         {
+            name: "Adidas F50 Football Boots",
+            price: "5000",
+            img: "https://www.soccerbible.com/media/159417/f50-8-min.jpg",
+            desc: "High-performance football boots designed for speed, control, and all-game comfort."
+        },
+
+         {
+            name: "Vintage Sport Jersey- Manchester United Vintage",
+            price: "1550",
+            img: "https://static.wixstatic.com/media/8cbfd0_fde6369a30ab4785adbd99651da3b174~mv2.jpeg/v1/fill/w_560,h_559,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/8cbfd0_fde6369a30ab4785adbd99651da3b174~mv2.jpeg",
+            desc: "Authentic Manchester United vintage jersey with classic throwback style and a timeless retro appeal."
+        },
+        {
+            name: "Sport Jersey- Manchester United 25/26 third kit",
+            price: "1500",
+            img: "https://www.sollymsports.com/wp-content/uploads/2025/08/photo-output_1-4.jpeg",
+            desc: "Breathable sports jersey perfect for training and matches.MATCH YOUR FAVORITE TEAM WITH STYLE!!!"
+        },
+        {
+            name: "Soccer Ball- English PL (PUMA)",
+            price: "450",
+            img: "https://images.puma.com/image/upload/f_auto,q_auto,w_2000,b_rgb:FAFAFA/global/084699/01/fnd/ZAF/fmt/png",
+            desc: " The 25/26 EPL soccer ball suitable for both casual and professional play."
+        },
+        {
+            name: "Gym Gloves",
+            price: "150",
+            img: "https://www.workoutforless.co.uk/cdn/shop/files/adidas-performance-gloves-black.jpg?v=1715174133",
+            desc: "Comfortable gym gloves with a firm grip and sweat resistance."
+        },
+        {
+            name: "Yoga Mat",
+            price: "350",
+            img: "https://i0.wp.com/perfectdealz.co.za/wp-content/uploads/2024/10/Yoga-Mat-Non-Slip-63cm-x-183cm-3.jpg?fit=493%2C493&quality=100&ssl=1",
+            desc: "Non-slip yoga mat for all types of exercises and stretches."
+        },
+        {
+            name: "Water Bottles",
+            price: "100",
+            img: "https://bubblesplastics.co.za/cdn/shop/products/Bottle-Gym-1L-100_Clear.jpg?v=1721898230&width=2000",
+            desc: "Reusable water bottle to keep you hydrated during workouts."
+        },
+
+        {
+            name: "Injury Prevention Kit",
+            price: "750",
+            img: "https://m.media-amazon.com/images/I/71QiVeosyFL._UF894,1000_QL80_.jpg",
+            desc: "Comprehensive kit designed to prevent sports injuries."
+        }
+    ];
+
+    const productList = document.getElementById('product-list');
+
+    function displayProducts(filteredProducts = products) {
+        productList.innerHTML = '';
+        filteredProducts.forEach((product, index) => {
+            const div = document.createElement('div');
+            div.classList.add('product-card');
+            div.innerHTML = `
+                <img src="${product.img}" alt="${product.name} - ${product.desc}">
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p>R${product.price}</p>
+                    <button onclick="viewProduct(${index})">View</button>
+                </div>
+            `;
+            productList.appendChild(div);
+        });
+    }
+
+    function viewProduct(index) {
+        localStorage.setItem('selectedProduct', JSON.stringify(products[index]));
+        window.location.href = 'view-product.html';
+    }
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        const filtered = products.filter(product =>
+            product.name.toLowerCase().includes(query) ||
+            product.desc.toLowerCase().includes(query)
+        );
+        displayProducts(filtered);
+    });
+
+    // Sort functionality
+    const sortSelect = document.getElementById('sortSelect');
+    sortSelect.addEventListener('change', function() {
+        let sorted = [...products];
+        if (this.value === 'name') {
+            sorted.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (this.value === 'priceLow') {
+            sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        } else if (this.value === 'priceHigh') {
+            sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        }
+        displayProducts(sorted);
+    });
+
+    // Initial display
+    displayProducts();
+</script>
+</body>
+</html>
