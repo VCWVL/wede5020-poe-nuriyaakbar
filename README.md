@@ -81,6 +81,8 @@ CHANGELOG:
 - Added a "checkout" button on the shopping cart page,which then takes you to the "payment.html" page,where the customer can review their order and complete a SIMULATED checkout.
 - Updated the KPI's and added a refined budget breakdown in proposal 1.
 - Added intext references and Harvard style references at the end of the proposal.
+
+
 PART 3:
 - Added a textbox for a coupon code.
 - Added a space for the user to add their shipping information.
