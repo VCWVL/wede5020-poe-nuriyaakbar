@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View our product gallery for sports gear and apparel images. Discover top-quality sports equipment at ProSport Hub, Durban.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ff512f">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="https://www.prosporthub.co.za/gallery.html" />
+    <meta property="og:title" content="ProSport Hub – Product Gallery">
+    <meta property="og:description" content="Product gallery at ProSport Hub. Free shipping on orders over R500!">
+    <meta property="og:type" content="website">
+    <!-- Preload critical assets -->
+    <link rel="preload" href="style.css" as="style">
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Security -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com;">
+    <!-- Cache control -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
+    <title>Product Gallery | Sports Gear Images | ProSport Hub</title>
+    <style>
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 5px;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox img.zoomed {
+            transform: scale(1.5);
+            cursor: zoom-out;
+        }
+
+        .lightbox-title {
+            color: white;
+            margin-top: 1em;
+            font-size: 1.2em;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        .nav-buttons {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-sizing: border-box;
+        }
+
+        .nav-buttons button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 10px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .nav-buttons button:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Product Gallery | Sports Gear Images | ProSport Hub</h1>
+        <p style="text-align:center;font-size:1.5em;font-weight:bold;color:#ff512f;margin-top:0.5em;background:#fff;padding:0.5em;border-radius:5px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">🚚 FREE SHIPPING ON ORDERS OVER R500! 🚚</p>
+    </header>
+
+        <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="enquiry.html">Enquiry</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="map.html">Location</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Sports Equipment & Apparel Gallery</h2>
+        <div class="gallery" id="gallery"></div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="close-lightbox" onclick="closeLightbox()">&times;</button>
+        <div class="nav-buttons">
+            <button onclick="prevImage()">&#10094;</button>
+            <button onclick="nextImage()">&#10095;</button>
+        </div>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-title" id="lightbox-title"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ProSport Hub – Sports Equipment & Apparel Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const products = [
+            {
+                name: "Running Sneakers",
+                img: "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/d1a1880a-6f23-4c9e-b057-d6cd8a72c42b/NIKE+AIR+WINFLO+11.png",
+                desc: "Lightweight running sneakers designed for speed and comfort."
+            },
+            {
+                name: "Football Boots",
+                img: "https://www.soccerbible.com/media/159417/f50-8-min.jpg",
+                desc: "High-performance football boots designed for speed, control, and all-game comfort."
+            },
+            {
+                name: "Vintage Sport Jerseys",
+                img: "https://championgearz.co.za/cdn/shop/files/a5606581.jpg?v=1703173757",
+                desc: "Authentic vintage jerseys with classic throwback style and timeless retro appeal."
+            },
+            {
+                name: "Sport Jerseys",
+                img: "https://www.sollymsports.com/wp-content/uploads/2025/08/photo-output_1-4.jpeg",
+                desc: "Breathable sports jersey perfect for training and matches."
+            },
+            {
+                name: "Sporting Equipment",
+                img: "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+                desc: "Variety of durable equipment for all types of sport."
+            },
+            {
+                name: "Gym Gloves",
+                img: "https://www.workoutforless.co.uk/cdn/shop/files/adidas-performance-gloves-black.jpg?v=1715174133",
+                desc: "Comfortable gym gloves with a firm grip and sweat resistance."
+            },
+            {
+                name: "Yoga Mats",
+                img: "https://i0.wp.com/perfectdealz.co.za/wp-content/uploads/2024/10/Yoga-Mat-Non-Slip-63cm-x-183cm-3.jpg?fit=493%2C493&quality=100&ssl=1",
+                desc: "Non-slip yoga mat for all types of exercises and stretches."
+            },
+            {
+                name: "Water Bottles",
+                img: "https://bubblesplastics.co.za/cdn/shop/products/Bottle-Gym-1L-100_Clear.jpg?v=1721898230&width=2000",
+                desc: "Reusable water bottle to keep you hydrated during workouts."
+            },
+            {
+                name: "Accessories",
+                img: "https://img.fruugo.com/product/8/85/1647275858_0340_0340.jpg",
+                desc: "Essential accessories to complement your sports gear."
+            }
+        ];
+
+        let currentImageIndex = 0;
+
+        // Populate gallery
+        const gallery = document.getElementById('gallery');
+        products.forEach((product, index) => {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            div.innerHTML = `<img src="${product.img}" alt="${product.name} - ${product.desc}" onclick="openLightbox(${index})">`;
+            gallery.appendChild(div);
+        });
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            
+            lightboxImg.src = products[index].img;
+            lightboxTitle.textContent = products[index].name;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % products.length;
+            updateLightboxImage();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + products.length) % products.length;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            lightboxImg.src = products[currentImageIndex].img;
+            lightboxTitle.textContent = products[currentImageIndex].name;
+            lightboxImg.classList.remove('zoomed'); // Reset zoom when changing images
+        }
+
+        // Add click handler for zooming
+        document.getElementById('lightbox-img').addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent lightbox from closing
+            this.classList.toggle('zoomed');
+        });
+
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+    </script>
+</body>
+</html>
