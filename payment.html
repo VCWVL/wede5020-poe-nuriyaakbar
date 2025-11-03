@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout & Payment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Checkout & Payment</h1>
+        <p style="text-align:center;font-size:1.5em;font-weight:bold;color:#ff512f;margin-top:0.5em;background:#fff;padding:0.5em;border-radius:5px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">🚚 FREE SHIPPING ON ORDERS OVER R500! 🚚</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="payment-container" style="max-width:400px;margin:2em auto;padding:2em;background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.07);">
+            <h2>Order Summary</h2>
+            <div id="order-summary"></div>
+            <div style="margin-top:1.5em;border-top:1px solid #eee;padding-top:1em;">
+                <label for="coupon">Have a coupon code?</label><br>
+                <div style="display:flex;gap:10px;margin-top:0.5em;">
+                    <input type="text" id="coupon" placeholder="Enter code" style="flex:1;padding:0.5em;">
+                    <button onclick="applyCoupon()" style="background:#444;color:white;padding:0.5em 1em;border:none;border-radius:5px;cursor:pointer;">Apply</button>
+                </div>
+            </div>
+            <h2 style="margin-top:2em;">Shipping Information</h2>
+            <form id="shipping-form" style="margin-bottom:2em;">
+                <label for="full-name">Full Name:</label><br>
+                <input type="text" id="full-name" required><br><br>
+                
+                <label for="address">Street Address:</label><br>
+                <input type="text" id="address" required><br><br>
+                
+                <label for="suburb">Suburb:</label><br>
+                <input type="text" id="suburb" required><br><br>
+                
+                <label for="city">City:</label><br>
+                <input type="text" id="city" required><br><br>
+                
+                <label for="postcode">Postal Code:</label><br>
+                <input type="text" id="postcode" required><br><br>
+                
+                <label for="phone">Phone Number:</label><br>
+                <input type="tel" id="phone" required><br><br>
+            </form>
+            <h2 style="margin-top:2em;">Payment Details</h2>
+            <form id="payment-form">
+                <label for="name">Name on Card:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="card">Card Number:</label><br>
+                <input type="text" id="card" name="card" maxlength="16" required><br><br>
+                <label for="exp">Expiry Date:</label><br>
+                <input type="text" id="exp" name="exp" placeholder="MM/YY" required><br><br>
+                <label for="cvv">CVV:</label><br>
+                <input type="text" id="cvc" name="cvc" maxlength="4" required><br><br>
+                <button type="submit" style="background:#ff512f;color:white;padding:0.7em 2em;border:none;border-radius:5px;font-size:1em;cursor:pointer;">Pay Now</button>
+            </form>
+            <div id="payment-message" style="margin-top:1em;color:green;font-weight:bold;"></div>
+
+            <!-- Security & Privacy -->
+            <div style="margin-top:2em;padding:1.5em;background:#f8f9fa;border-radius:8px;">
+                <h3 style="color:#185a9d;margin-bottom:1em;">🔒 Security & Privacy</h3>
+                <p>Your payment information is securely processed using industry-standard encryption. We never store your complete credit card details. By completing this purchase, you agree to our Privacy Policy and Terms of Service.</p>
+            </div>
+
+            <!-- Returns & Refunds -->
+            <div style="margin-top:1.5em;padding:1.5em;background:#f8f9fa;border-radius:8px;">
+                <h3 style="color:#185a9d;margin-bottom:1em;">↩️ Returns & Refunds</h3>
+                <p>• 30-day return policy for unused items in original packaging<br>
+                • Full refund guaranteed for damaged or incorrect items<br>
+                • Free return shipping for orders over R500<br>
+                • Process typically takes 5-7 business days</p>
+            </div>
+
+            <!-- Contact Support -->
+            <div style="margin-top:1.5em;padding:1.5em;background:#f8f9fa;border-radius:8px;">
+                <h3 style="color:#185a9d;margin-bottom:1em;">📞 Need Help?</h3>
+                <p>Our support team is here to help!</p>
+                <p>• Email: info@prosporthub.co.za<br>
+                • Phone: +27 65 897 7861<br>
+                • Hours: Mon-Fri, 8am-6pm SAST</p>
+                <button onclick="window.location.href='contact.html'" style="background:#444;color:white;padding:0.5em 1em;border:none;border-radius:5px;cursor:pointer;margin-top:1em;">Contact Support</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 ProSport Hub – Sports Equipment & Apparel Store. All rights reserved.</p>
+    </footer>
+    <script>
+        // Display order summary from cart
+        const summaryDiv = document.getElementById('order-summary');
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = 0;
+        let discount = 0;
+        if (cart.length === 0) {
+            summaryDiv.innerHTML = '<p>Your cart is empty.</p>';
+        } else {
+            let html = '<ul style="padding-left:1em;">';
+            cart.forEach(item => {
+                let priceValue = 0;
+                if (typeof item.price === 'string' && item.price.includes('-')) {
+                    let match = item.price.match(/\d+/);
+                    priceValue = match ? parseInt(match[0]) : 0;
+                } else {
+                    priceValue = parseInt(item.price) || 0;
+                }
+                let itemTotal = priceValue * (item.qty || 1);
+                total += itemTotal;
+                html += `<li>${item.name} x ${item.qty || 1} — R${itemTotal}</li>`;
+            });
+            const shipping = 100; // Standard shipping fee
+            html += `</ul>
+                    <div style="margin-top:1em;border-top:1px solid #eee;padding-top:1em;">
+                        <p>Subtotal: R${total}</p>
+                        <p>Shipping: R${shipping}</p>
+                        <p id="discount-line" style="color:#ff512f;display:none;">Discount: -R<span id="discount-amount">0</span></p>
+                        <p style="font-weight:bold;font-size:1.1em;">Total: R<span id="final-total">${total + shipping}</span></p>
+                    </div>`;
+            summaryDiv.innerHTML = html;
+        }
+        function applyCoupon() {
+            const couponCode = document.getElementById('coupon').value.toUpperCase();
+            const validCoupons = {
+                'WELCOME10': 10,
+                'SPORT20': 20,
+                'SUMMER30': 30
+            };
+
+            if (validCoupons[couponCode]) {
+                discount = Math.floor((total * validCoupons[couponCode]) / 100);
+                document.getElementById('discount-line').style.display = 'block';
+                document.getElementById('discount-amount').textContent = discount;
+                document.getElementById('final-total').textContent = total + 100 - discount;
+                document.getElementById('coupon').style.borderColor = '#4CAF50';
+            } else {
+                document.getElementById('coupon').style.borderColor = '#ff0000';
+                alert('Invalid coupon code');
+            }
+        }
+
+        // Fake payment form
+        document.getElementById('payment-form').onsubmit = function(e) {
+            e.preventDefault();
+            // Validate shipping form
+            const shippingForm = document.getElementById('shipping-form');
+            if (!shippingForm.checkValidity()) {
+                alert('Please fill in all shipping information');
+                return;
+            }
+            document.getElementById('payment-message').textContent = 'Payment successful! Thank you for your order.';
+            localStorage.removeItem('cart');
+        };
+    </script>
+</body>
+</html>
