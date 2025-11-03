@@ -1,0 +1,717 @@
+/* CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* index.html */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    line-height: 1.6;
+}
+header {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: white;
+    padding: 2.5em 1em 2em 1em;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(221,36,118,0.15);
+}
+.hero {
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    color: white;
+    padding: 3em 1em 2em 1em;
+    text-align: center;
+    border-radius: 0 0 40px 40px;
+    margin-bottom: 2em;
+    box-shadow: 0 8px 32px rgba(24,90,157,0.10);
+}
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 0.3em;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 1.5em;
+}
+.cta-btn {
+    background: #ff512f;
+    color: white;
+    border: none;
+    padding: 0.9em 2.2em;
+    font-size: 1.2em;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255,81,47,0.15);
+    transition: background 0.2s;
+    letter-spacing: 2px;
+}
+.cta-btn:hover {
+    background: #dd2476;
+}
+.cta-btn:focus, .cta-btn:active {
+    outline: 2px solid #185a9d;
+    background: #dd2476;
+    color: #fff;
+    box-shadow: 0 0 0 4px rgba(221,36,118,0.15);
+}
+nav {
+    background: #444;
+    padding: 0.5em;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+nav ul li {
+    margin-right: 20px;
+}
+nav ul li:last-child {
+    margin-right: 0;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+nav ul li a:hover {
+    color: #ff512f;
+}
+main {
+    padding: 2em;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    margin: 2em 0 1em 0;
+}
+.feature-card {
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 1.5em 1.2em;
+    flex: 1 1 220px;
+    min-width: 220px;
+    max-width: 270px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.feature-card h3 {
+    color: #185a9d;
+    margin-bottom: 0.3em;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+}
+.cta-btn {
+    letter-spacing: 2px;
+}
+/* ...rest of index.html CSS... */
+
+/* product.html */
+.products-title {
+    text-align: center;
+    font-size: 2.4em;
+    color: #ff512f;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+    text-shadow: 0 2px 8px rgba(221,36,118,0.10);
+}
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+header {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: white;
+    padding: 2.5em 1em 2em 1em;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(221,36,118,0.15);
+}
+nav { background: #444; padding: 0.5em; }
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+nav ul li { margin-right: 20px; }
+nav ul li a { text-decoration: none; color: white; font-weight: bold; }
+nav ul li a:hover, nav ul li a.active { color: yellow; }
+main { padding: 2em; }
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 28px;
+    margin-top: 2em;
+}
+.product-card {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    text-align: center;
+    background: #fff;
+    position: relative;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: transform 0.18s, box-shadow 0.18s;
+}
+.product-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(221,36,118,0.13);
+}
+.product-card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+.product-info {
+    padding: 1.2em 1em 1em 1em;
+}
+.product-info h3 {
+    color: #185a9d;
+    margin-bottom: 0.3em;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+}
+.product-info p {
+    color: #ff512f;
+    font-size: 1.15em;
+    font-weight: bold;
+    margin-bottom: 0.7em;
+}
+.product-card button {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255,81,47,0.10);
+    transition: background 0.2s;
+}
+.product-card button:hover {
+    background: #185a9d;
+}
+button:active {
+    background: #185a9d;
+    color: #fff;
+    transform: scale(0.98);
+}
+.overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(24,90,157,0.82);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    padding: 18px;
+    text-align: center;
+    font-size: 1.08em;
+    font-weight: 500;
+}
+/* ...rest of product.html CSS... */
+
+/* enquiry.html */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: white;
+    padding: 2.5em 1em 2em 1em;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(221,36,118,0.15);
+}
+nav {
+    background: #444;
+    padding: 0.5em;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+nav ul li {
+    margin-right: 20px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+nav ul li a:hover {
+    color: yellow;
+}
+main {
+    padding: 2em;
+}
+.enquiry-form {
+    background: #f7f7f7;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 2em auto;
+    padding: 2em 1.5em 1.5em 1.5em;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.enquiry-form label {
+    font-weight: bold;
+    color: #222;
+}
+.enquiry-form input,
+.enquiry-form textarea {
+    width: 100%;
+    padding: 0.7em;
+    margin-top: 0.3em;
+    margin-bottom: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.enquiry-form input:focus, .enquiry-form textarea:focus {
+    outline: 2px solid #ff512f;
+    border-color: #ff512f;
+    background: #fff8f4;
+}
+.enquiry-form button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 0.7em 2em;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.enquiry-form button:hover {
+    background: #185a9d;
+}
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    margin-top: 2em;
+}
+/* ...rest of enquiry.html CSS... */
+
+/* contact.html */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    line-height: 1.6;
+}
+header {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: white;
+    padding: 2.5em 1em 2em 1em;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(221,36,118,0.15);
+}
+nav {
+    background: #444;
+    padding: 0.5em;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+nav ul li {
+    margin-right: 20px;
+}
+nav ul li:last-child {
+    margin-right: 0;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+nav ul li a.active, nav ul li a:hover {
+    color: #ff512f;
+}
+main {
+    padding: 2em;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.contact-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 2em 1.5em 1.5em 1.5em;
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+}
+.contact-card h2 {
+    color: #185a9d;
+    margin-bottom: 1em;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+}
+.contact-card p {
+    color: #444;
+    font-size: 1.1em;
+    margin: 0.7em 0;
+}
+.contact-card .icon {
+    font-size: 2em;
+    margin-bottom: 0.3em;
+    color: #ff512f;
+}
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    margin-top: 2em;
+}
+/* ...rest of contact.html CSS... */
+
+/* cart.html */
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+header { background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%); color: white; padding: 2.5em 1em 2em 1em; text-align: center; box-shadow: 0 4px 16px rgba(221,36,118,0.15); }
+nav { background: #444; padding: 0.5em; }
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+nav ul li { margin-right: 20px; }
+nav ul li a { text-decoration: none; color: white; font-weight: bold; }
+nav ul li a:hover, nav ul li a.active { color: yellow; }
+main { padding: 2em; }
+table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+table, th, td { border: 1px solid #ddd; }
+th, td { padding: 10px; text-align: center; }
+img { width: 80px; height: 80px; object-fit: cover; }
+button { background: #333; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; }
+button:hover { background: #444; }
+button:active {
+    background: #185a9d;
+    color: #fff;
+    transform: scale(0.98);
+}
+.total { text-align: right; margin-top: 1em; font-size: 1.2em; font-weight: bold; }
+footer { background: #333; color: white; text-align: center; padding: 1em; margin-top: 2em; }
+/* ...rest of cart.html CSS... */
+
+/* about.html */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    line-height: 1.6;
+}
+header {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: white;
+    padding: 2.5em 1em 2em 1em;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(221,36,118,0.15);
+}
+nav {
+    background: #444;
+    padding: 0.5em;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+nav ul li {
+    margin-right: 20px;
+}
+nav ul li:last-child {
+    margin-right: 0;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+nav ul li a.active, nav ul li a:hover {
+    color: #ff512f;
+}
+main {
+    padding: 2em;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.about-hero {
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    color: white;
+    padding: 2.5em 1em 2em 1em;
+    text-align: center;
+    border-radius: 0 0 40px 40px;
+    margin-bottom: 2em;
+    box-shadow: 0 8px 32px rgba(24,90,157,0.10);
+}
+.about-hero h2 {
+    font-size: 2.3em;
+    margin-bottom: 0.3em;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+.about-hero p {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+.about-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    margin: 2em 0 1em 0;
+}
+.about-card {
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 1.5em 1.2em;
+    flex: 1 1 220px;
+    min-width: 220px;
+    max-width: 270px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.about-card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 8px 32px rgba(221,36,118,0.13);
+}
+.about-card img {
+    width: 60px;
+    margin-bottom: 1em;
+}
+.about-card h3 {
+    color: #185a9d;
+    margin-bottom: 0.5em;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+}
+/* ...rest of about.html CSS... */
+
+/* view-product.html */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    line-height: 1.6;
+}
+header {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: white;
+    padding: 2.5em 1em 2em 1em;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(221,36,118,0.15);
+}
+nav {
+    background: #444;
+    padding: 0.5em;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+nav ul li {
+    margin-right: 20px;
+}
+nav ul li:last-child {
+    margin-right: 0;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+nav ul li a.active, nav ul li a:hover {
+    color: #ff512f;
+}
+.view-container {
+    max-width: 500px;
+    margin: 3em auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 2em 1.5em 1.5em 1.5em;
+    text-align: center;
+}
+.view-container img {
+    width: 100%;
+    max-width: 350px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1em;
+}
+.view-container h2 {
+    color: #185a9d;
+    margin-bottom: 0.5em;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+}
+.view-container p.price {
+    color: #ff512f;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 0.7em;
+}
+.view-container p.desc {
+    color: #444;
+    font-size: 1.1em;
+    margin-bottom: 1.2em;
+}
+.view-container button {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255,81,47,0.10);
+    transition: background 0.2s;
+}
+.view-container button:hover {
+    background: #185a9d;
+}
+.back-link {
+    display: inline-block;
+    margin-top: 1.5em;
+    color: #185a9d;
+    text-decoration: underline;
+    font-size: 1em;
+}
+a:focus, a:active {
+    outline: 2px solid #ff512f;
+    background: #ffecd2;
+    color: #dd2476;
+    border-radius: 4px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        padding: 1.2em 0.5em 1em 0.5em;
+        font-size: 1em;
+    }
+    .hero {
+        padding: 2em 0.5em 1em 0.5em;
+        border-radius: 0 0 20px 20px;
+    }
+    .hero h2 {
+        font-size: 1.5em;
+    }
+    .hero p {
+        font-size: 1em;
+    }
+    .cta-btn {
+        padding: 0.7em 1.2em;
+        font-size: 1em;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 0.5em 0;
+    }
+    main, .map-container, .gallery, .products {
+        padding: 0.5em;
+        max-width: 100%;
+    }
+    .feature-card, .product-card, .gallery-item {
+        margin-bottom: 1em;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .feature-card img, .product-card img, .gallery-item img {
+        max-width: 100%;
+        height: auto;
+    }
+    #map {
+        height: 300px;
+    }
+    .store-info {
+        padding: 10px;
+        font-size: 0.95em;
+    }
+    input, textarea, select, button {
+        font-size: 1em;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
