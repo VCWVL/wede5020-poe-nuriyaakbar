@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Your shopping cart at ProSport Hub. Free shipping on orders over R500!">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#ff512f">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="canonical" href="https://www.prosporthub.co.za/cart.html" />
+<meta property="og:title" content="ProSport Hub – Shopping Cart">
+<meta property="og:description" content="Your shopping cart at ProSport Hub. Free shipping on orders over R500!">
+<meta property="og:type" content="website">
+<!-- Preload critical assets -->
+<link rel="preload" href="style.css" as="style">
+<!-- DNS Prefetch -->
+<link rel="dns-prefetch" href="https://unpkg.com">
+<!-- Stylesheet -->
+<link rel="stylesheet" href="style.css">
+<!-- Security -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com;">
+<!-- Cache control -->
+<meta http-equiv="Cache-Control" content="max-age=31536000">
+</head>
+<body>
+<header>
+    <h1>Shopping Cart | ProSport Hub</h1>
+    <p style="text-align:center;font-size:1.5em;font-weight:bold;color:#ff512f;margin-top:0.5em;background:#fff;padding:0.5em;border-radius:5px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">🚚 FREE SHIPPING ON ORDERS OVER R500! 🚚</p>
+</header>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="enquiry.html">Enquiry</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="product.html">Products</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="map.html">Location</a></li>
+        <li><a href="cart.html" class="active">Shopping Cart</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h2>Your Shopping Cart</h2>
+    <div id="cart-container"></div>
+</main>
+
+<footer>
+    <p>&copy; 2025 ProSport Hub – Sports Equipment & Apparel Store. All rights reserved.</p>
+</footer>
+
+<script>
+    function loadCart() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const container = document.getElementById('cart-container');
+        container.innerHTML = '';
+
+        if (cart.length === 0) {
+            container.innerHTML = '<p>Your cart is empty.</p>';
+            return;
+        }
+
+        const table = document.createElement('table');
+        table.innerHTML = `
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        `;
+
+        let totalPrice = 0;
+
+        cart.forEach((item, index) => {
+            // If quantity doesn't exist, default to 1
+            if (!item.qty) item.qty = 1;
+            // Handle price as string (e.g., '700 - R1500') or number
+            let priceValue = 0;
+            if (typeof item.price === 'string' && item.price.includes('-')) {
+                // Use the lower bound for total calculation
+                let match = item.price.match(/\d+/);
+                priceValue = match ? parseInt(match[0]) : 0;
+            } else {
+                priceValue = parseInt(item.price) || 0;
+            }
+            const itemTotal = priceValue * item.qty;
+            totalPrice += itemTotal;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><img src="${item.img}" alt="${item.name}"></td>
+                <td>${item.name}</td>
+                <td>R${item.price}</td>
+                <td>
+                    <input type="number" min="1" value="${item.qty}" onchange="updateQty(${index}, this.value)">
+                </td>
+                <td>R${itemTotal}</td>
+                <td><button onclick="removeItem(${index})">Remove</button></td>
+            `;
+            table.appendChild(row);
+        });
+
+        container.appendChild(table);
+
+        const totalDiv = document.createElement('div');
+        totalDiv.className = 'total';
+        let shipping = 0;
+        if (totalPrice >= 500) {
+            shipping = 0;
+            totalDiv.textContent = 'Total: R' + totalPrice + ' (Free Shipping)';
+        } else if (totalPrice > 0) {
+            shipping = 100;
+            totalDiv.textContent = 'Total: R' + (totalPrice + shipping) + ' (Shipping: R100)';
+        } else {
+            totalDiv.textContent = 'Total: R' + totalPrice;
+        }
+        container.appendChild(totalDiv);
+
+        // Add checkout button
+        const checkoutBtn = document.createElement('button');
+        checkoutBtn.textContent = 'Checkout';
+        checkoutBtn.style.background = '#ff512f';
+        checkoutBtn.style.color = 'white';
+        checkoutBtn.style.padding = '0.7em 2em';
+        checkoutBtn.style.border = 'none';
+        checkoutBtn.style.borderRadius = '5px';
+        checkoutBtn.style.fontSize = '1em';
+        checkoutBtn.style.cursor = 'pointer';
+        checkoutBtn.style.marginTop = '1.5em';
+        checkoutBtn.onclick = function() {
+            window.location.href = 'payment.html';
+        };
+        container.appendChild(checkoutBtn);
+    }
+
+    function updateQty(index, qty) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart[index].qty = parseInt(qty);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+    }
+
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+    }
+
+    loadCart();
+</script>
+</body>
+</html>
